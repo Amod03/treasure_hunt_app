@@ -114,4 +114,28 @@ export const data = [
       ],
       hint: "Think of words that mean 'lost in thought'"
       },
+      {
+        id: 10,
+        question: "What is the antonym of 'obscure'?",
+        answer: "clear",
+        options: [
+        "obvious",
+        "confusing",
+        "clear",
+        "complex"
+        ],
+        hint: "Think of words that mean 'easy to understand' or 'well-known'"
+        },
+        {
+            id: 11,
+            question: "Feelings about quiz?",
+            answer: "Awesome",
+            options: [
+            "Awesome",
+            "Good",
+            "Average",
+            "Below Average"
+            ],
+            hints: "Think of words that mean 'easy to understand' or 'well-known'"
+         }
   ];

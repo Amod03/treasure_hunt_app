@@ -10,13 +10,8 @@ function RegistrationForm() {
     const [password,setPassword] = useState("");
     const [confirmPassword,setConfirmPassword] = useState("");
     const [isRegistered, setIsRegistered] = useState(false);
-    // const [data,setData] = useState({
-    //     firstName:"",
-    //     lastName:"",
-    //     email:"",
-    //     password:"",
-    //     confirmPassword:""   
-    // });
+
+
     const [errors, setErrors] = useState({
         firstName: "",
         lastName: "",
@@ -100,13 +95,12 @@ function RegistrationForm() {
             password,
             confirmPassword
           };
-    
+         
           try {
             const response = await axios.post(
               'http://localhost:8080/api/register',
               formData
             );
-            console.log(response.data);
             setIsRegistered(true);
           } catch (error) {
             console.log(error);
@@ -118,40 +112,67 @@ function RegistrationForm() {
       }
 
     return(
-        <div className="form relative z-[100]">
-            <div className="form-body text-2xl">
-            <h1 className='text-5xl text-gradient my-4 text-bold'>Registration Form</h1>
-                <div className="flex justify-between ">
-                    <label className=" font-bold mt-3" >First Name :- </label>
-                    <input className="rounded-lg" type="text" value={firstName} onChange = {(e) => handleInputChange(e)} id="firstName" placeholder="First Name"/>
-                    {errors.firstName && <span className="text-red-500">{errors.firstName}</span>}
-                </div>
-                <div className="flex justify-between">
-                    <label className="font-bold" >Last Name :- </label>
-                    <input  type="text" name="" id="lastName" value={lastName}  className="rounded-lg" onChange = {(e) => handleInputChange(e)} placeholder="Last Name"/>
-                    {errors.lastName && <span className="text-red-500">{errors.lastName}</span>}
-                </div>
-                <div className="flex justify-between">
-                    <label className=" font-bold" >Email :- </label>
-                    <input  type="email" id="email" className=" rounded-lg" value={email} onChange = {(e) => handleInputChange(e)} placeholder="Email"/>
-                    {errors.email && <span className="text-red-500">{errors.email}</span>}
-                </div>
-                <div className="flex justify-between">
-                    <label className=" font-bold" >Password :- </label>
-                    <input className=" rounded-lg" type="password"  id="password" value={password} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
-                    {errors.password && <span className="text-red-500">{errors.password}</span>}
-                </div>
-                <div className="flex justify-between">
-                    <label className=" font-bold" >Confirm Password:</label>
-                    <input className="rounded-lg" type="password" id="confirmPassword" value={confirmPassword} onChange = {(e) => handleInputChange(e)} placeholder="Password"/>
-                    {errors.confirmPassword && <span className="text-red-500">{errors.confirmPassword}</span>}
-                </div>
-            </div>
-            <div className="footer">
-                <button onClick={()=>handleSubmit()} type="submit" className="text-bold text-4xl border-3">Register</button>
-            </div>
+        <div className=" sm:max-w-[70%] md:max-w-[65%]  lg:max-w-[60%]  xl:max-w-[40%] mx-auto">
+        <div className=" md:mt-5">
+          <div className="flex flex-col  justify-center mb-4 ">
+            <h2 className="text-2xl  md:text-3xl lg:text-4xl uppercase mt-4">Register Here</h2>
+            <input
+              type="text"
+              value={firstName}
+              onChange={(e) => handleInputChange(e)}
+              id="firstName"
+              placeholder="First Name"
+              className=" mt-10 xl:mt-20 text-lg md:text-xl  px-6 py-4 md:px-8  placeholder:text-grey-900 placeholder:italic placeholder:font-extrabold rounded-full bg-slate-300  focus:bg-opacity-50 duration-150  mb-4 md:mb-5 text-gray-800 font-semibold"
+            />
+            {errors.firstName && <span className="text-white font-semibold text-2xl">{errors.firstName}</span>}
+            <input
+              type="text"
+              name=""
+              id="lastName"
+              value={lastName}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="Last Name"
+              className=" text-lg md:text-xl  px-6 py-4 md:px-8  placeholder:text-grey-900 placeholder:italic placeholder:font-extrabold rounded-full bg-slate-300  focus:bg-opacity-50 duration-150  mb-4 md:mb-5 text-gray-800 font-semibold"
+            />
+            {errors.lastName && <span className="text-white font-semibold text-2xl">{errors.lastName}</span>}
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="Email"
+              className=" text-lg md:text-xl  px-6 py-4 md:px-8   placeholder:text-grey-900 placeholder:italic  placeholder:font-extrabold rounded-full bg-slate-300  focus:bg-opacity-50 duration-150  mb-4 md:mb-5 text-gray-800 font-semibold"
+            />
+            {errors.email && <span className="text-white font-semibold text-2xl">{errors.email}</span>}
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="Password"
+              className=" text-lg md:text-xl px-6 py-4 md:px-8   placeholder:text-grey-900 placeholder:italic placeholder:font-extrabold rounded-full bg-slate-300  focus:bg-opacity-50 duration-150  mb-4 md:mb-5  text-gray-800  "
+            />
+            {errors.password && <span className="text-white font-semibold text-2xl">{errors.password}</span>}
+  
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => handleInputChange(e)}
+              placeholder="Confirm Password"
+              className=" text-lg md:text-xl px-6 py-4 md:px-8   placeholder:text-grey-900 placeholder:italic placeholder:font-extrabold rounded-full bg-slate-300 focus:bg-opacity-50 duration-150  mb-4 md:mb-5  text-gray-800  "
+            />
+            {errors.confirmPassword && <span className="text-white font-semibold text-2xl">{errors.confirmPassword}</span>}
+            <button
+              onClick={() => handleSubmit()}
+              type="submit"
+              className=" bg-pink-400 rounded-full text-lg md:text-xl lg:w-[60%] lg:mx-auto xl:w-[70%] px-6 py-4 md:px-8 lg:py-6 cursor-pointer duration-150 hover:opacity-70"
+            >
+              Register
+            </button>
+          </div>
         </div>
-       
+      </div>
     )       
 }
 

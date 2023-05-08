@@ -9,7 +9,9 @@ function create_Register(req, res) {
       email,
       password,
       score: 0,
-      time: 0
+      time: 0,
+      timePerQuestion: Array(10).fill(0),
+      storyReached: "NO",
     });
   
    Create.save()
@@ -42,7 +44,7 @@ async function login(req, res) {
 
   async function update(req, res){
     const { id } = req.params;
-    const { score, time } = req.body;
+    const { score, time,timePerQuestion ,storyReached} = req.body;
     
     try {
       const user = await Registration.findById(id);
@@ -52,6 +54,8 @@ async function login(req, res) {
       
       user.score = score;
       user.time = time;
+      user.timePerQuestion=timePerQuestion;
+      user.storyReached=storyReached;
       await user.save();
       
       return res.status(200).json({ message: 'User updated successfully' });
